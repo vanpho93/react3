@@ -79,17 +79,25 @@ function addNewNote(){
 
 var ABC = React.createClass(
   {
+    change(){
+      this.setState({onEdit: !this.state.onEdit});
+    },
     getInitialState(){
       return {onEdit: true}
     },
     render(){
       var xhtml;
-      var txt = this.props.children;
       if(this.state.onEdit){
-        return <input type="text" defaultValue="{txt}"/>
+        xhtml = <input type="text" defaultValue={this.props.children}/>
       }else{
-        return <p>{this.props.children}</p>
+        xhtml = <p>{this.props.children}</p>
       }
+      return(
+        <div>
+          {xhtml}
+          <button onClick={this.change}>Change</button>
+        </div>
+      )
     }
   }
 );
