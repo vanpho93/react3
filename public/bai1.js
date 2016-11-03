@@ -1,5 +1,12 @@
+var that;
+
 function al(){
   alert(123);
+}
+
+function addText(){
+  that.state.mang.push('PHP');
+  that.setState(that.state);
 }
 
 var txt = 'Khoa Pham abc';
@@ -10,7 +17,7 @@ var InputDiv = React.createClass(
       return(
         <div>
           <input type="text" placeHolder="Enter your note" /><br/><br/>
-          <button> Save </button>
+          <button onClick={addText}> Save </button>
         </div>
       )
     }
@@ -32,9 +39,11 @@ var List = React.createClass(
   // github.com/vanpho93/react3
   {
     add(){
-      this.setState({mang: this.state.mang.concat("PHP")});
+      this.state.mang.push("PHP");
+      this.setState(this.state);
     },
     getInitialState(){
+      that = this;
       return {mang: ["Android", "iOS", "Node"]}
     },
     render(){
