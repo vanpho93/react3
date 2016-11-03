@@ -29,7 +29,11 @@ var Note = React.createClass({
 });
 
 var List = React.createClass(
+  // github.com/vanpho93/react3
   {
+    add(){
+      this.setState({mang: this.state.mang.concat("PHP")});
+    },
     getInitialState(){
       return {mang: ["Android", "iOS", "Node"]}
     },
@@ -44,6 +48,7 @@ var List = React.createClass(
         <div>
           <div id="placeToAdd"></div>
           <button onClick={addNewNote}>Add a new Note</button>
+          <button onClick={this.add}>Add acdfdfdfd</button>
           {xhtml}
         </div>
       )
