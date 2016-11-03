@@ -4,6 +4,19 @@ function al(){
 
 var txt = 'Khoa Pham abc';
 
+var InputDiv = React.createClass(
+  {
+    render: function(){
+      return(
+        <div>
+          <input type="text" placeHolder="Enter your note" /><br/><br/>
+          <button> Save </button>
+        </div>
+      )
+    }
+  }
+);
+
 var Note = React.createClass({
   render(){
     return(
@@ -29,6 +42,7 @@ var List = React.createClass(
       });
       return (
         <div>
+          <div id="placeToAdd"></div>
           <button onClick={addNewNote}>Add a new Note</button>
           {xhtml}
         </div>
@@ -45,5 +59,5 @@ ReactDOM.render(
 );
 
 function addNewNote(){
-  alert('Them note');
+  ReactDOM.render(<InputDiv/>, document.getElementById('placeToAdd'));
 }
