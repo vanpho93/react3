@@ -15,13 +15,16 @@ var txt = 'Khoa Pham abc';
 var InputDiv = React.createClass(
   {
     add(){
-
+        var text = this.refs.txt.value;
+        $.post('/add', {noiDung: text}, function(data){
+            that.setState({mang: data});
+        });
     },
     render: function(){
       return(
         <div>
-          <input type="text" ref= "txt" placeHolder="Enter your note" /><br/><br/>
-          <button onClick={()=>{addText(this.refs.txt.value)}}> Save </button>
+          <input type="text" ref= "txt" placeholder="Enter your note" /><br/><br/>
+          <button onClick={this.add}> Save </button>
         </div>
       )
     }
@@ -109,4 +112,4 @@ var ABC = React.createClass(
   }
 );
 
-ReactDOM.render(<ABC>dafdsafd</ABC>, document.getElementById('root2'));
+//ReactDOM.render(<ABC>dafdsafd</ABC>, document.getElementById('root2'));

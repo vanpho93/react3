@@ -17,6 +17,12 @@ app.get("/info", function(req, res){
   res.send(mang);
 });
 
+app.post("/add", parser, function(req, res){
+  var noiDung = req.body.noiDung;
+  mang.push(noiDung);
+  res.send(mang);
+});
+
 app.post("/abcd", parser, function(req, res){
   var ten = req.body.ten;
   var tuoi = req.body.tuoi;
