@@ -29,6 +29,13 @@ app.post("/delete", parser, function(req, res){
   res.send(mang);
 });
 
+app.post("/update", parser, function(req, res){
+  var id = req.body.id;
+  var noiDung = req.body.noiDung;
+  mang[id] = noiDung;
+  res.send(mang);
+});
+
 app.post("/abcd", parser, function(req, res){
   var ten = req.body.ten;
   var tuoi = req.body.tuoi;

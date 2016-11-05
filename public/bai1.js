@@ -32,6 +32,19 @@ var InputDiv = React.createClass(
 );
 
 var Note = React.createClass({
+  save(){
+    var noiDung = this.refs.txt.value;
+    var id = this.props.id;
+
+    $.post("/update", {id: id, noiDung: noiDung}, function(data){
+      that.setState({mang: data});
+      
+    });
+
+  },
+  cancel(){
+    this.setState({onEdit: false});
+  },
   update(){
     this.setState({onEdit: true});
   },
@@ -45,7 +58,7 @@ var Note = React.createClass({
   },
   render(){
     var xhtml = this.state.onEdit?
-      <input defaultValue={this.props.children}/>:
+      <input defaultValue={this.props.children} ref="txt"/>:
       <h3>{this.props.children}</h3>;
 
     var htmlControl = !this.state.onEdit?
