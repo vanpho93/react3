@@ -35,11 +35,20 @@ var Note = React.createClass({
   save(){
     var noiDung = this.refs.txt.value;
     var id = this.props.id;
+    var note = this;
 
-    $.post("/update", {id: id, noiDung: noiDung}, function(data){
-      that.setState({mang: data});
-      
-    });
+    // $.post("/update", {id: id, noiDung: noiDung}, function(data){
+    //   that.setState({mang: data});
+    //   note.setState({onEdit: false});
+    // });
+
+    $.post("/update", {id: id, noiDung: noiDung},
+    (data)=>
+      {
+        that.setState({mang: data});
+        this.setState({onEdit: false});
+      }
+    );
 
   },
   cancel(){
