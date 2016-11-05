@@ -45,19 +45,24 @@ var Note = React.createClass({
   },
   render(){
     var xhtml = this.state.onEdit?
-    <div className="div-note">
-      <input defaultValue={this.props.children}/>
+      <input defaultValue={this.props.children}/>:
+      <h3>{this.props.children}</h3>;
+
+    var htmlControl = !this.state.onEdit?
+    <div>
       <button onClick={this.delete}>Xóa</button>
       <button onClick={this.update}>Sửa</button>
+    </div>:
+    <div>
+      <button onClick={this.save}>Lưu</button>
+      <button onClick={this.cancel}>Hủy</button>
     </div>
-    :
-    <div className="div-note">
-      <h3>{this.props.children}</h3>
-      <button onClick={this.delete}>Xóa</button>
-      <button onClick={this.update}>Sửa</button>
-    </div>
-    ;
-    return (xhtml)
+    return (
+      <div className="div-note">
+        {xhtml}
+        {htmlControl}
+      </div>
+    );
   }
 });
 
