@@ -32,13 +32,32 @@ var InputDiv = React.createClass(
 );
 
 var Note = React.createClass({
+  update(){
+    this.setState({onEdit: true});
+  },
+  getInitialState(){
+    return {onEdit: false}
+  },
+  delete(){
+    $.post("/delete", {id: this.props.id}, function(data){
+      that.setState({mang: data});
+    });
+  },
   render(){
-    return(
-      <div className="div-note">
-        <h3>{this.props.children}</h3>
-        <button onClick={al}>{txt}</button>
-      </div>
-    )
+    var xhtml = this.state.onEdit?
+    <div className="div-note">
+      <input defaultValue={this.props.children}/>
+      <button onClick={this.delete}>Xóa</button>
+      <button onClick={this.update}>Sửa</button>
+    </div>
+    :
+    <div className="div-note">
+      <h3>{this.props.children}</h3>
+      <button onClick={this.delete}>Xóa</button>
+      <button onClick={this.update}>Sửa</button>
+    </div>
+    ;
+    return (xhtml)
   }
 });
 
@@ -57,7 +76,7 @@ var List = React.createClass(
       var xhtml = this.state.mang.map(function(monHoc, index){
         return (
           <div key={index}>
-            <Note>{monHoc}</Note>
+            <Note id={index}>{monHoc}</Note>
           </div>);
       });
       return (

@@ -23,6 +23,12 @@ app.post("/add", parser, function(req, res){
   res.send(mang);
 });
 
+app.post("/delete", parser, function(req, res){
+  var id = req.body.id;
+  mang.splice(id, 1);
+  res.send(mang);
+});
+
 app.post("/abcd", parser, function(req, res){
   var ten = req.body.ten;
   var tuoi = req.body.tuoi;
