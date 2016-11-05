@@ -14,6 +14,9 @@ var txt = 'Khoa Pham abc';
 
 var InputDiv = React.createClass(
   {
+    add(){
+
+    },
     render: function(){
       return(
         <div>
@@ -45,7 +48,7 @@ var List = React.createClass(
     },
     getInitialState(){
       that = this;
-      return {mang: ["Android", "iOS", "Node"]}
+      return {mang: []}
     },
     render(){
       var xhtml = this.state.mang.map(function(monHoc, index){
@@ -72,6 +75,10 @@ ReactDOM.render(
     <List/>
   </div>, document.getElementById('root')
 );
+
+$.get("/info", function(data){
+    that.setState({mang: data});
+});
 
 function addNewNote(){
   ReactDOM.render(<InputDiv/>, document.getElementById('placeToAdd'));

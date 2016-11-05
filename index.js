@@ -7,12 +7,14 @@ app.set('view engine', 'ejs')
 app.set('views','./views')
 app.listen(3000);
 
+var mang = ["KhoaPham", "Node", "React"];
+
 app.get("/", function(req, res){
   res.render("trangchu");
 });
 
 app.get("/info", function(req, res){
-  res.send('KhoaPham Training');
+  res.send(mang);
 });
 
 app.post("/abcd", parser, function(req, res){
